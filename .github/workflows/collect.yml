@@ -1,0 +1,45 @@
+name: Collect bridges
+
+on:
+  schedule:
+    # Hourly, at minute 7 to avoid the top-of-hour stampede on the runners.
+    - cron: "7 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collect-bridges
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Collect, validate and archive bridges
+        run: python main.py
+
+      - name: Commit and push updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bridge README.md
+          if git diff --staged --quiet; then
+            echo "No bridge changes this run."
+          else
+            git commit -m "Update bridges ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
