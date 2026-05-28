@@ -1,0 +1,5 @@
+# Keep LF in the repo for scripts so the GitHub Actions bash step and Python run cleanly.
+* text=auto eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.txt text eol=lf
