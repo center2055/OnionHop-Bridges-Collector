@@ -6,15 +6,24 @@ OnionHop Bridges Collector
 Collects, validates and archives Tor bridges so the OnionHop app (and anyone else)
 can fetch working bridges from a stable set of raw URLs.
 
-For each (transport, IP-version) it produces three lists under ``bridge/``:
+It covers two kinds of transports:
 
-* ``<t>.txt`` / ``<t>_ipv6.txt``              - full archive (union over time)
-* ``<t>_72h.txt`` / ``<t>_ipv6_72h.txt``      - bridges first seen in the last 72h
-* ``<t>_tested.txt`` / ``<t>_ipv6_tested.txt``- bridges that passed a TCP/TLS reachability test
+* **Pooled** (obfs4, webtunnel, vanilla) - large rotating pools scraped + tested each run. For
+  each (transport, IP-version) it writes three lists under ``bridge/``:
+
+  - ``<t>.txt`` / ``<t>_ipv6.txt``              - full archive (union over time)
+  - ``<t>_72h.txt`` / ``<t>_ipv6_72h.txt``      - bridges first seen in the last 72h
+  - ``<t>_tested.txt`` / ``<t>_ipv6_tested.txt``- bridges that passed a TCP/TLS reachability test
+
+* **Fronted** (snowflake, meek-azure, conjure) - no rotating pool exists; these reach Tor through a
+  broker / domain fronting using a small set of fixed default lines (placeholder IP). We publish
+  those defaults (``<t>.txt`` / ``<t>_72h.txt``) and a ``<t>_tested.txt`` of the lines whose
+  broker/front host answered on 443.
 
 Sources (unioned for resilience):
-  1. The official Tor BridgeDB HTTPS endpoint (bridges.torproject.org).
-  2. The community Delta-Kronecker/Tor-Bridges-Collector raw lists (seed/enrichment).
+  1. The official Tor BridgeDB HTTPS endpoint (bridges.torproject.org) - pooled transports.
+  2. The community Delta-Kronecker/Tor-Bridges-Collector raw lists (seed/enrichment) - pooled.
+  3. Built-in Tor Browser default lines - fronted transports.
 
 Standard library + ``requests`` + ``beautifulsoup4`` only. Designed to run hourly in CI.
 """
@@ -51,11 +60,33 @@ USER_AGENT = (
     "(KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
 )
 
-# transport label -> (bridgedb transport query value)
-TRANSPORTS = ["obfs4", "webtunnel", "vanilla"]
+# Pooled transports: BridgeDB and the Delta-Kronecker seed distribute large, rotating pools of
+# these, so they are genuinely "collected" (scraped + connectivity-tested) every run.
+POOLED_TRANSPORTS = ["obfs4", "webtunnel", "vanilla"]
 IP_VARIANTS = [("", False), ("_ipv6", True)]  # (filename suffix, ipv6?)
 
 DELTA_RAW_BASE = "https://raw.githubusercontent.com/Delta-Kronecker/Tor-Bridges-Collector/main/bridge"
+
+# Fronted transports have NO rotating pool: BridgeDB does not hand them out and the Delta seed
+# carries none. They reach Tor through a broker and/or domain fronting using a small set of fixed
+# default bridge lines (the ones shipped with Tor Browser); the listed IP (192.0.2.x, RFC 5737) is a
+# placeholder. We publish those defaults and test them by probing the broker/front host on 443.
+# Keys are the OnionHop transport/file names; line tokens may differ (e.g. meek-azure -> "meek_lite").
+FRONTED_BRIDGES = {
+    "snowflake": [
+        "snowflake 192.0.2.3:80 2B280B23E1107BB62ABFC40DDCC8824814F80A72 fingerprint=2B280B23E1107BB62ABFC40DDCC8824814F80A72 url=https://1098762253.rsc.cdn77.org/ fronts=www.cdn77.com,www.phpmyadmin.net ice=stun:stun.l.google.com:19302,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478 utls-imitate=hellorandomizedalpn",
+        "snowflake 192.0.2.4:80 8838024498816A039FCBBAB14E6F40A0843051FA fingerprint=8838024498816A039FCBBAB14E6F40A0843051FA url=https://1098762253.rsc.cdn77.org/ fronts=www.cdn77.com,www.phpmyadmin.net ice=stun:stun.l.google.com:19302,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478 utls-imitate=hellorandomizedalpn",
+    ],
+    "meek-azure": [
+        "meek_lite 192.0.2.20:80 97700DFE9F483596DDA6264C4D7DF7641E1E39CE url=https://meek.azureedge.net/ front=ajax.aspnetcdn.com",
+    ],
+    "conjure": [
+        "conjure 192.0.2.3:80 2B280B23E1107BB62ABFC40DDCC8824814F80A72 url=https://registration.refraction.network/api fronts=cdn.sstatic.net,assets.cloud.censys.io transport=min",
+    ],
+}
+
+# Transport tokens (first word of a bridge line) that are fronted / not directly pingable.
+FRONTED_TOKENS = {"snowflake", "meek", "meek_lite", "meek-azure", "conjure"}
 
 
 def log(message: str) -> None:
@@ -114,6 +145,36 @@ def is_ip_literal(host: str) -> bool:
         return False
 
 
+def transport_token(line: str) -> str:
+    """Return the leading transport token of a bridge line (lowercased), or '' if none."""
+    stripped = strip_bridge_prefix(line).strip()
+    if not stripped:
+        return ""
+    return stripped.split(None, 1)[0].lower()
+
+
+def is_fronted_line(line: str) -> bool:
+    return transport_token(line) in FRONTED_TOKENS
+
+
+def extract_front_host(line: str):
+    """Pull the broker/front host from a fronted bridge line: url= host, then fronts=, then front=."""
+    match = re.search(r"(?:^|\s)url=(\S+)", line, re.IGNORECASE)
+    if match:
+        host_match = re.search(r"https?://([^/:\s]+)", match.group(1))
+        if host_match:
+            return host_match.group(1)
+    match = re.search(r"(?:^|\s)fronts=(\S+)", line, re.IGNORECASE)
+    if match:
+        first = match.group(1).split(",")[0].strip()
+        if first:
+            return first
+    match = re.search(r"(?:^|\s)front=(\S+)", line, re.IGNORECASE)
+    if match and match.group(1).strip():
+        return match.group(1).strip()
+    return None
+
+
 # --- Connectivity testing ---------------------------------------------------
 
 def test_tcp(host: str, port: int) -> bool:
@@ -137,6 +198,14 @@ def test_tls(host: str, port: int) -> bool:
 
 
 def is_reachable(bridge_line: str) -> bool:
+    # Fronted transports (snowflake/meek/conjure) carry a placeholder IP and reach Tor via a broker
+    # or domain front; probe that front/broker host on 443 (TLS) instead of the dummy endpoint.
+    if is_fronted_line(bridge_line):
+        front_host = extract_front_host(bridge_line)
+        if not front_host:
+            return False
+        return test_tls(front_host, 443)
+
     host, port, transport = extract_endpoint(bridge_line)
     if not host or not port:
         return False
@@ -270,7 +339,7 @@ def main() -> None:
 
     log("Starting OnionHop bridge collection run...")
 
-    for transport in TRANSPORTS:
+    for transport in POOLED_TRANSPORTS:
         for suffix, ipv6 in IP_VARIANTS:
             base_name = f"{transport}{suffix}.txt"
             recent_name = f"{transport}{suffix}_72h.txt"
@@ -308,6 +377,43 @@ def main() -> None:
             stats[tested_name] = len(tested)
             log(f"{transport} ipv6={ipv6}: archive={len(archive)} fresh72h={len(recent)} tested={len(tested)}")
 
+    # Fronted transports: no pool to scrape, so seed from the fixed default lines and test each by
+    # probing its broker/front host. Single (IPv4-named) list per transport; these lines are static.
+    for transport, default_lines in FRONTED_BRIDGES.items():
+        base_name = f"{transport}.txt"
+        recent_name = f"{transport}_72h.txt"
+        tested_name = f"{transport}_tested.txt"
+        base_path = os.path.join(BRIDGE_DIR, base_name)
+
+        existing = read_existing(base_path)
+        seeded = {line.strip() for line in default_lines if is_valid_bridge_line(line)}
+        archive = existing | seeded
+
+        for bridge in seeded:
+            history.setdefault(bridge, now_iso())
+
+        write_lines(base_path, archive)
+
+        recent = []
+        for bridge in archive:
+            stamp = history.get(bridge)
+            if not stamp:
+                continue
+            try:
+                if datetime.fromisoformat(stamp) > recent_cutoff:
+                    recent.append(bridge)
+            except ValueError:
+                continue
+        write_lines(os.path.join(BRIDGE_DIR, recent_name), recent)
+
+        tested = test_many(sorted(archive))
+        write_lines(os.path.join(BRIDGE_DIR, tested_name), tested)
+
+        stats[base_name] = len(archive)
+        stats[recent_name] = len(recent)
+        stats[tested_name] = len(tested)
+        log(f"{transport} (fronted): archive={len(archive)} fresh72h={len(recent)} tested={len(tested)}")
+
     save_history(history)
     update_readme(stats)
     log("Run complete.")
@@ -329,6 +435,15 @@ def update_readme(stats: dict) -> None:
             f"| [{transport}_ipv6.txt]({repo}/{transport}_ipv6.txt) ({count(transport + '_ipv6.txt')}) |"
         )
 
+    def fronted_row(transport: str) -> str:
+        return (
+            f"| **{transport}** "
+            f"| [{transport}_tested.txt]({repo}/{transport}_tested.txt) ({count(transport + '_tested.txt')}) "
+            f"| [{transport}.txt]({repo}/{transport}.txt) ({count(transport + '.txt')}) |"
+        )
+
+    fronted_rows = "\n".join(fronted_row(t) for t in FRONTED_BRIDGES)
+
     body = f"""# OnionHop Bridges Collector
 
 Automatically collects, validates and archives Tor bridges for the
@@ -338,7 +453,10 @@ sources, then TCP/TLS-tests them.
 
 _Last updated: {stamp}_
 
-## Lists
+## Pooled transports
+
+These have large, rotating bridge pools that the Tor Project and community
+sources distribute, so they are scraped fresh and connectivity-tested each run.
 
 | Transport | Tested & Active (IPv4) | Fresh 72h (IPv4) | Full Archive (IPv4) | Full Archive (IPv6) |
 | :--- | :--- | :--- | :--- | :--- |
@@ -346,9 +464,22 @@ _Last updated: {stamp}_
 {row('webtunnel')}
 {row('vanilla')}
 
-IPv6 variants exist for every list (e.g. `obfs4_ipv6_tested.txt`,
+IPv6 variants exist for every pooled list (e.g. `obfs4_ipv6_tested.txt`,
 `obfs4_ipv6_72h.txt`). Note: IPv6 `*_tested` lists may be empty because CI
 runners often lack IPv6 connectivity — prefer IPv4 where possible.
+
+## Fronted transports
+
+Snowflake, meek and conjure have **no rotating pool** — they reach Tor through a
+broker and/or domain fronting using a small set of fixed default bridge lines
+(the ones shipped with Tor Browser; the listed IP is a placeholder). These lists
+are therefore small and essentially static. The `_tested` list contains the
+lines whose broker/front host answered on port 443 (there is no `_72h` or
+`_ipv6` variant for these).
+
+| Transport | Tested & Active | Default lines |
+| :--- | :--- | :--- |
+{fronted_rows}
 
 ## Consuming these lists
 
@@ -356,17 +487,20 @@ Fetch the raw files directly, e.g.:
 
 ```
 {repo}/obfs4_tested.txt
+{repo}/snowflake_tested.txt
 ```
 
 For censorship resilience, mirror the same paths behind GitHub Pages, a CDN,
 and/or a self-hosted domain, and try them in order. OnionHop's in-app
-**Bridge Scanner** reads these files and TCP-pings them so users can pick the
-bridges that actually work in their region.
+**Bridge Scanner** reads these files and tests them (TCP for pooled transports,
+broker/front reachability for fronted ones) so users can pick the bridges that
+actually work in their region.
 
 ## Sources
 
 - Official Tor BridgeDB: `https://bridges.torproject.org`
 - Community seed: [Delta-Kronecker/Tor-Bridges-Collector](https://github.com/Delta-Kronecker/Tor-Bridges-Collector)
+- Fronted defaults: the snowflake/meek/conjure bridge lines shipped with Tor Browser
 
 ## Disclaimer
 
