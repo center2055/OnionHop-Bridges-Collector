@@ -1,7 +1,5 @@
 webtunnel [2001:db8:1b75:cd28:36c7:1347:3eda:a01e]:443 13001E27730255B1101F95BE4E5EC29E9560B0DD url=https://mrrp.sillykittens.net/IfuJ9KsjkEk6462QblGNI0pR ver=0.0.4
 webtunnel [2001:db8:2fd8:82a5:19a4:88c6:392c:f516]:443 0C3517B8D76701F136F9D54C4257DA43B726D241 url=https://reptiles.miscellanemaker.cc/416a3e7992a1450c592b60f7544fdd37 ver=0.0.4
-webtunnel [2001:db8:3506:4f42:d18a:e05e:2c90:c172]:443 C1071E13650A41F1B4A1D93C089D4EF685DD1833 url=https://masterkeef.duckdns.org/9VqR6ogd8uMUqncudbuNeHX1 ver=0.0.4
-webtunnel [2001:db8:3506:4f42:d18a:e05e:2c90:c172]:443 C1071E13650A41F1B4A1D93C089D4EF685DD1833 url=https://masterkeef.duckdns.org/9VqR6ogd8uMUqncudbuNeHX1 ver=0.0.5
 webtunnel [2001:db8:ba36:d2f:764f:ac6b:f992:cb92]:443 33E457AAB7861BF71EF5E77947C1DD3F104BE411 url=https://cdn.dameray.com/2b2d9f2715a649a49c2f034089ad2671826b ver=0.0.4
 webtunnel [2001:db8:c941:cbb4:a3ba:a4ef:7f4d:c1d]:443 B40D907F98CDB4FAE1BD94050159DC1B579D35B8 url=https://mae.nasnedagoniat.top/f3erdBdKJdJ2j4kVFgdSD ver=0.0.5
 webtunnel [2001:db8:cfcd:5e97:60f0:317:8011:beaa]:443 0C3517B8D76701F136F9D54C4257DA43B726D241 url=https://miscellanemaker.cc/416a3e7992a1450c592b60f7544fdd37 ver=0.0.4
