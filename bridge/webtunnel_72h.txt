@@ -4,8 +4,5 @@ webtunnel [2001:db8:4e0:fc0e:c381:ed8c:7ddf:3433]:443 7F8A03A9D34FAF642D9480CA50
 webtunnel [2001:db8:4e0:fc0e:c381:ed8c:7ddf:3433]:443 7F8A03A9D34FAF642D9480CA506C5701989C8EAC url=https://bridge.hxflife.xyz/07a6bf67ce2030e0582dcbce9b2f5c9c ver=0.0.6
 webtunnel [2001:db8:4fcd:461f:cbce:edea:fb74:a1e8]:443 F799A0A458365388600F54BD44A99B5887D54911 url=https://wt.aaronstory2026.xyz:2053/vicmackey ver=0.0.4
 webtunnel [2001:db8:8398:7383:d015:afe5:11c2:61a6]:443 3BB18234DE40FE0313FBC3FCFFBAF16F42381BFF url=https://libreaxolotl.xyz/rKGGmPXyenWA0PDRpL6INM2Z ver=0.0.4
-webtunnel [2001:db8:a273:b501:5987:3660:5d1b:1603]:443 082B13E0A1E5D8D2585B6C84914B1810B7E884EC url=https://s3.vlue.dev/s33gf0iiidqo9lacdqzbjgy6 ver=0.0.4
 webtunnel [2001:db8:abc:8852:1fca:afa2:1368:ccb4]:443 0AD63AC9D14A2711228AC9CA54E3EAC18A4FD628 url=https://sub2.mysty.ru/ ver=0.0.5
-webtunnel [2001:db8:b91b:9b4c:8003:9671:eee:7f0a]:443 B80A80398FDE7F94C6C72F9429D8EA128663B780 url=https://ams1.cryptomeanscryptography.club/x50fjFEcivPj42GQKfOOnyw3 ver=0.0.5
-webtunnel [2001:db8:e304:b158:ed49:cdd9:613c:862e]:443 082B13E0A1E5D8D2585B6C84914B1810B7E884EC url=https://bootstrap.gosuda.org/s33gf0iiidqo9lacdqzbjgy6 ver=0.0.6
 webtunnel [2001:db8:e40f:2e7c:eaa0:a693:c904:6780]:443 63BC6E53914453BF8C4355082EC907E72E68B7C4 url=https://anoni.net/sgs/lol ver=0.0.5
