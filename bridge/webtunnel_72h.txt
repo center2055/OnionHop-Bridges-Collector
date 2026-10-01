@@ -6,5 +6,7 @@ webtunnel [2001:db8:4e0:fc0e:c381:ed8c:7ddf:3433]:443 7F8A03A9D34FAF642D9480CA50
 webtunnel [2001:db8:4fcd:461f:cbce:edea:fb74:a1e8]:443 F799A0A458365388600F54BD44A99B5887D54911 url=https://wt.aaronstory2026.xyz:2053/vicmackey ver=0.0.4
 webtunnel [2001:db8:8398:7383:d015:afe5:11c2:61a6]:443 3BB18234DE40FE0313FBC3FCFFBAF16F42381BFF url=https://libreaxolotl.xyz/rKGGmPXyenWA0PDRpL6INM2Z ver=0.0.4
 webtunnel [2001:db8:90fe:ab66:632e:6253:a16d:c15b]:443 48E7FE5AD683DC5C768A5E755D0B0B79DC8EBCC2 url=https://girafe.tel/418itlP1y6FTIGNe5iMyS41A ver=0.0.5
+webtunnel [2001:db8:945c:e0b9:7e4c:c974:ff00:d4c5]:443 91937F3EFB3BE5169788AC7C8BF07460B7E306DB url=https://kabel.entreri.de/YXbp1dNrJeOF8giAFFYWxvmf ver=0.0.6
 webtunnel [2001:db8:abc:8852:1fca:afa2:1368:ccb4]:443 0AD63AC9D14A2711228AC9CA54E3EAC18A4FD628 url=https://sub2.mysty.ru/ ver=0.0.5
 webtunnel [2001:db8:e40f:2e7c:eaa0:a693:c904:6780]:443 63BC6E53914453BF8C4355082EC907E72E68B7C4 url=https://anoni.net/sgs/lol ver=0.0.5
+webtunnel [2001:db8:eedb:cae7:a345:4f72:f9cc:5de0]:443 B3C81E7A0CA474270DAA4A2C8633E1CA8935C37D url=https://wordpress.far-east-investment.ru/sORes7268CEUSRD7hAWvJU5A ver=0.0.6
