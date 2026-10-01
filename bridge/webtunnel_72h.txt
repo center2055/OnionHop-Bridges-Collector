@@ -1,4 +1,5 @@
 webtunnel [2001:db8:3606:d9c5:1fa:bff3:1d62:7465]:443 900844EDD4FCFA9F7CE18C391A777F12FBFE1C1E url=https://wt5.wtqwert.top/asdfasdf1234wt5 ver=0.0.4
+webtunnel [2001:db8:4b0:feea:81d8:72b9:95c1:cd62]:443 A6A5AF5E8410EB76647925F66AB2B5810A2C3791 url=https://wolkewolkewolke.zip/xrCyxOQH6HOe952fVtzKMGDN ver=0.0.4
 webtunnel [2001:db8:4b0:feea:81d8:72b9:95c1:cd62]:443 A6A5AF5E8410EB76647925F66AB2B5810A2C3791 url=https://wolkewolkewolke.zip/xrCyxOQH6HOe952fVtzKMGDN ver=0.0.6
 webtunnel [2001:db8:4e0:fc0e:c381:ed8c:7ddf:3433]:443 7F8A03A9D34FAF642D9480CA506C5701989C8EAC url=https://bridge.hxflife.xyz/07a6bf67ce2030e0582dcbce9b2f5c9c ver=0.0.5
 webtunnel [2001:db8:4e0:fc0e:c381:ed8c:7ddf:3433]:443 7F8A03A9D34FAF642D9480CA506C5701989C8EAC url=https://bridge.hxflife.xyz/07a6bf67ce2030e0582dcbce9b2f5c9c ver=0.0.6
