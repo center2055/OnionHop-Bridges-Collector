@@ -1,6 +1,5 @@
 webtunnel [2001:db8:1169:5d59:447d:1feb:3595:b174]:443 9E22636EA817AD4FE43F2EC14DEED5131FED1CB0 url=https://cdn-40.triplebit.dev/aif5ohWa4aWiephu ver=0.0.2
 webtunnel [2001:db8:3be7:5113:eddb:210d:291f:b52c]:443 B6CFDBD17618C147903429AB1C0CC759933DB50E url=https://adm.unicoridor.ru/rtASSYlOJgl1nKtH8njdZLbs ver=0.0.6
-webtunnel [2001:db8:435:341e:ceee:b744:9691:b675]:443 A310B68A6C1D1DBDD374B1B641E9A122109477DB url=https://ovVRTrs9IcHUv2uQBPa4cvKX.cdnspace.net ver=0.0.5
 webtunnel [2001:db8:50a9:c546:36be:96ad:4cd1:cfff]:443 D20CE64A82CF6E6DB6F4F95C1F8FA81B06C10888 url=https://cdn-35.triplebit.dev/iethae6ahvoo1ieV ver=0.0.2
 webtunnel [2001:db8:6281:baa0:afc0:9579:b303:59a7]:443 377CF6FCBFD2E57D0775EA6F2E8D3EF0D8CDD02F url=https://cryptomeanscryptography.club/TfDS3X50Rf3dR5x3Q3vLS25o ver=0.0.5
 webtunnel [2001:db8:65a8:c789:310f:6d00:60be:b447]:443 DBF8A0FEBBC698A086B0C758407012CE4CD27122 url=https://wtrelay7.duckdns.org/f7Qm2xV9pL4tR8wZ3cN6bY1h ver=0.0.2
