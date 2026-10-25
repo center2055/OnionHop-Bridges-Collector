@@ -2,6 +2,7 @@ webtunnel [2001:db8:3845:2a14:bb9:481c:73c9:d237]:443 337F12771B8FBA072121C0978B
 webtunnel [2001:db8:3845:2a14:bb9:481c:73c9:d237]:443 337F12771B8FBA072121C0978B8D5722B567609B url=https://www.cafe-kantholz.de/LceovFqcXy92Ji6Gx0rrUmmB ver=0.0.6
 webtunnel [2001:db8:3845:2a14:bb9:481c:73c9:d237]:443 337F12771B8FBA072121C0978B8D5722B567609B url=https://www.cafe-kantholz.de/LceovFqcXy92Ji6Gx0rrUmmB ver=0.0.7
 webtunnel [2001:db8:63b9:6800:b3f0:e360:b90c:2953]:443 0CCD302CACD212634B21499C6D4243B9363B6FD4 url=https://johns-tech-garden.com/bCnGKCIpQGga4LDzNH7fgZtD ver=0.0.5
-webtunnel [2001:db8:8a96:b122:e199:d511:c55e:6bcb]:443 F5038BA595B75BD87A295CA6060214CCD4280F2F url=https://bridges.lovethosetrains.com/iwCXEhbdY7ErwP8J4MRavyAj ver=0.0.6
+webtunnel [2001:db8:7d9e:1aa:ee0d:4115:ac82:8007]:443 7CC64C882F0098BCE3AC6D1C14ED5BA017B15AD8 url=https://ie01-dub.beijing.st/sorryiamlateijustdontgiveafoook ver=0.0.5
 webtunnel [2001:db8:8c88:1b17:d7ae:cb68:f28e:e31c]:443 C115DAC2FE991CA25DDD43D7D4D398FEA9AA4C01 url=https://foglab.net/t9crLwo4LzFDWHdwcGf9gFrk ver=0.0.5
+webtunnel [2001:db8:9830:b7ec:bb37:f12:ec5f:aace]:443 653AB31AC3FBEEE0B224833F2C2F6EEB2FC67FAB url= ver=0.0.4
 webtunnel [2001:db8:cd2d:9f63:180b:1857:cf43:6fd0]:443 FD3942670AB4ADED23A52FB34B9BADDA63D8B62C url=https://webtunnel.buhhenbaldence.com:8443/MqyJQRbWuJW0teiWH02Q3p7J ver=0.0.5
