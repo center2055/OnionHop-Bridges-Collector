@@ -1,5 +1,4 @@
 webtunnel [2001:db8:12ff:2d55:9130:36a7:c49b:d1f4]:443 933C998EC827D1C17CC93D1292BBC41735867CF8 url=https://x7t2qctb.xoomlia.com/qzxrtfmu/ ver=0.0.3
-webtunnel [2001:db8:14c2:fde6:d1a:a0b:1594:b5d4]:443 9B39F8EFD845D1A89E223F08B887F94F63B7C486 url=https://bridge.64-83-2-102.sslip.io:8443/p/2f8c1d ver=0.0.7
 webtunnel [2001:db8:1d4c:baf8:3ecc:fdb9:9a07:c2f8]:443 2EBBBBCC1AFBA74ACC9297508ED2CCE2DAD0E92F url=https://n8n.ikebun.jp/129f3f0795e0b037b6e974864e691f0c ver=0.0.5
 webtunnel [2001:db8:1f1e:4d2f:321b:6626:823e:c504]:443 4946C9B8410CF59953455C158F957CAB2055A61D url=https://mstdn.party/fooghee7naChifi0 ver=0.0.2
 webtunnel [2001:db8:2777:f8e4:5dac:f4e3:96c5:c311]:443 DF343521735ABE129910A998817B3A93AA2390FE url=https://test.coellen.xyz ver=0.0.5
