@@ -5,7 +5,7 @@ Automatically collects, validates and archives Tor bridges for the
 hourly to fetch fresh bridges from the official Tor Project and community
 sources, then TCP/TLS-tests them.
 
-_Last updated: 2026-11-14 10:07 UTC_
+_Last updated: 2026-11-14 16:35 UTC_
 
 ## Pooled transports
 
@@ -14,8 +14,8 @@ sources distribute, so they are scraped fresh and connectivity-tested each run.
 
 | Transport | Tested & Active (IPv4) | Fresh 72h (IPv4) | Full Archive (IPv4) | Full Archive (IPv6) |
 | :--- | :--- | :--- | :--- | :--- |
-| **obfs4** | [obfs4_tested.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/obfs4_tested.txt) (212) | [obfs4_72h.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/obfs4_72h.txt) (20) | [obfs4.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/obfs4.txt) (773) | [obfs4_ipv6.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/obfs4_ipv6.txt) (375) |
-| **webtunnel** | [webtunnel_tested.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/webtunnel_tested.txt) (194) | [webtunnel_72h.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/webtunnel_72h.txt) (13) | [webtunnel.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/webtunnel.txt) (317) | [webtunnel_ipv6.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/webtunnel_ipv6.txt) (270) |
+| **obfs4** | [obfs4_tested.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/obfs4_tested.txt) (211) | [obfs4_72h.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/obfs4_72h.txt) (24) | [obfs4.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/obfs4.txt) (773) | [obfs4_ipv6.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/obfs4_ipv6.txt) (375) |
+| **webtunnel** | [webtunnel_tested.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/webtunnel_tested.txt) (192) | [webtunnel_72h.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/webtunnel_72h.txt) (13) | [webtunnel.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/webtunnel.txt) (317) | [webtunnel_ipv6.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/webtunnel_ipv6.txt) (270) |
 | **vanilla** | [vanilla_tested.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/vanilla_tested.txt) (158) | [vanilla_72h.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/vanilla_72h.txt) (16) | [vanilla.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/vanilla.txt) (508) | [vanilla_ipv6.txt](https://raw.githubusercontent.com/center2055/OnionHop-Bridges-Collector/main/bridge/vanilla_ipv6.txt) (74) |
 
 IPv6 variants exist for every pooled list (e.g. `obfs4_ipv6_tested.txt`,
