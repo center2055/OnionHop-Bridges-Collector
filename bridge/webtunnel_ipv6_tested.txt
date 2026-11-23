@@ -60,7 +60,6 @@ webtunnel [2001:db8:5e5b:6b4b:2bf3:6087:e7c5:b7f7]:443 3154681979E1CB737DB4A2D54
 webtunnel [2001:db8:5e5b:6b4b:2bf3:6087:e7c5:b7f7]:443 3154681979E1CB737DB4A2D540C63F1B92B03995 url=https://tor1.woodie.dev/BXJGRHc8o82e4XheHZ2FCbeA ver=0.0.4
 webtunnel [2001:db8:6281:baa0:afc0:9579:b303:59a7]:443 377CF6FCBFD2E57D0775EA6F2E8D3EF0D8CDD02F url=https://cryptomeanscryptography.club/TfDS3X50Rf3dR5x3Q3vLS25o ver=0.0.3
 webtunnel [2001:db8:6281:baa0:afc0:9579:b303:59a7]:443 377CF6FCBFD2E57D0775EA6F2E8D3EF0D8CDD02F url=https://cryptomeanscryptography.club/TfDS3X50Rf3dR5x3Q3vLS25o ver=0.0.5
-webtunnel [2001:db8:628e:4cc:75b8:a286:fd79:4e82]:443 4723A337C3F108B96EF7429EC3DD96F3222B589D url=https://api.mittarovo.cz/5E8310CF0A ver=0.0.4
 webtunnel [2001:db8:63b4:6bd7:a357:7858:898e:718c]:443 059AEB126918A33B8246E8136D565FF57753D5CF url=https://alwaysnewbie.eu.org/homesweethome ver=0.0.2
 webtunnel [2001:db8:63b4:6bd7:a357:7858:898e:718c]:443 059AEB126918A33B8246E8136D565FF57753D5CF url=https://alwaysnewbie.eu.org/homesweethome ver=0.0.3
 webtunnel [2001:db8:6589:5555:e62f:68ab:8983:8e01]:443 98422E9D1648FFDB8F16C06CF58CD64B6C03A003 url=https://bridge-es.jmrp.io/hzry0yMJazasJuZZP09uCUtn ver=0.0.4
@@ -151,3 +150,4 @@ webtunnel [2001:db8:f7d3:5976:5f99:663b:3ba1:4e3a]:443 05D0531304F2DB161921D6D03
 webtunnel [2001:db8:f7d3:5976:5f99:663b:3ba1:4e3a]:443 05D0531304F2DB161921D6D03CE38DB1CA2332D6 url=https://pod03.oneclickhost.eu/d0NbsV36v0Q4MDdDTs3ZhCCJ ver=0.0.7
 webtunnel [2001:db8:f87:9991:eb2c:ee55:9794:8632]:443 1A60FE3FAE97BD5FAE8E8F2E9B94AA697D9467F8 url=https://oldradio.info/9bd85e2a09a7eb00e0d2a542d436fd632143df9e ver=0.0.3
 webtunnel [2001:db8:fbfa:48b4:5520:53e6:24b4:eca0]:443 93807A85521915D7D2BA17725C08AC39035D1741 url=https://web.localenby.is/HmlgNcBbNgRJw862bJVxZRes ver=0.0.3
+webtunnel [2001:db8:fc15:f920:4f0a:d9bc:21c5:a6a7]:443 98422E9D1648FFDB8F16C06CF58CD64B6C03A003 url=https://bridge-es.jmrp.eu/hzry0yMJazasJuZZP09uCUtn ver=0.0.7
